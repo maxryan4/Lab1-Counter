@@ -5,6 +5,7 @@
 int main(int argc, char **argv, char **env){
     int i;
     int clk;
+    int stop_cycles = 0;
 
     Verilated::commandArgs(argc, argv);
     // init top verilog instance
@@ -29,8 +30,9 @@ int main(int argc, char **argv, char **env){
             top->clk = !top->clk;
             top->eval();
         }
+
         top->rst = (i < 2) | (i == 15);
-        top->en = (i>4);
+        top->en = (i > 4) & ((i < 14) | (i > 16));
         if (Verilated::gotFinish()) exit(0);
     }
     tfp->close();
