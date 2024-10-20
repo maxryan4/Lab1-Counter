@@ -276,8 +276,9 @@ module counter #(
 
 always_ff @ (posedge clk)
   if (rst) count <= {WIDTH{1'b0}};
-  else     count <= ld ? v : count + {{WIDTH-1{1'b0}},1'b1}
+  else     count <= ld ? v : count + {{WIDTH-1{1'b0}},1'b1};
 endmodule
+
 ```
 
 Vbuddy’s flag register has two modes of operation.  The default mode is **TOGGLE**, which means that everything the rotary encoder switch is pressed, the flag will toggle as indicated at the bottom of the TFT screen.
